@@ -90,14 +90,9 @@ class Pry
         RbConfig::CONFIG['ruby_install_name'] == 'ruby'
       end
 
-      def mri_18?
-        mri? && RUBY_VERSION =~ /1.8/
-      end
-
       def mri_19?
         mri? && RUBY_VERSION =~ /1.9/
       end
-
 
       # Try to use `less` for paging, if it fails then use
       # simple_pager. Also do not page if Pry.pager is falsey
