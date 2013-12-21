@@ -219,11 +219,6 @@ if Pry::Helpers::BaseHelpers.windows? && !Pry::Helpers::BaseHelpers.windows_ansi
   end
 end
 
-begin
-  require 'bond'
-rescue LoadError
-end
-
 require 'pry/version'
 require 'pry/repl'
 require 'pry/rbx_path'
