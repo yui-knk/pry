@@ -20,6 +20,24 @@ class Pry
       show-doc Pry -a    # for all definitions of Pry class (all monkey patches)
     BANNER
 
+    # override
+    def process
+      code_object = Pry::CodeObject.lookup(obj_name, _pry_, :super => opts[:super])
+      raise CommandError, no_definition_message if !code_object
+      @original_code_object = code_object
+
+      if show_all_modules?(code_object)
+        # show all monkey patches for a module
+        result = content_and_headers_for_all_module_candidates(code_object)
+      else
+        # show a specific code object
+        result = content_and_header_for_code_object(code_object)
+      end
+
+      set_file_and_dir_locals(code_object.source_file)
+      stagger_output result
+    end
+
     # The docs for code_object prepared for display.
     def content_for(code_object)
       Code.new(render_doc_markup_for(code_object),

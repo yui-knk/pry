@@ -6,6 +6,7 @@ group :development do
   gem 'jist'
   gem 'rb-inotify', :require => 'false'
   gem 'rb-fsevent', :require => 'false'
+  gem 'pry-doc'
 end
 
 platform :rbx do
